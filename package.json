@@ -1,7 +1,7 @@
 {
   "name": "bgbf-bgg-search",
-  "version": "0.0.1",
-  "homepage": "https://gorestarry.github.io/react-scss-modules-storybook-library-template/",
+  "version": "0.1.0",
+  "homepage": "https://gorestarry.github.io/bgbf-bgg-search/",
   "author": {
     "name": "Gore Wang",
     "email": "gore.wang.f2e@gmail.com",
@@ -28,6 +28,9 @@
     "patch": "npm version patch --no-git-tag-version"
   },
   "dependencies": {
+    "bgg-xml-api-client": "^0.1.10",
+    "lodash": "^4.17.21",
+    "react-select": "^5.2.2",
     "sass": "^1.49.8"
   },
   "peerDependencies": {

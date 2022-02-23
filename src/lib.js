@@ -1,3 +1,3 @@
-import { Button } from "./examples/Button.jsx";
+import BggSearchInput from "./BggSearchInput";
 
-export { Button };
+export default BggSearchInput;
