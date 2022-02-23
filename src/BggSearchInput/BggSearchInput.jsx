@@ -33,7 +33,9 @@ const BggSearchInput = ({
       const year = yearpublished?.value;
       return {
         label: `${name}${year ? " (" + year + ")" : ""}`,
-        value: id,
+        name,
+        id,
+        // value: id,
         year: year,
       };
     });
