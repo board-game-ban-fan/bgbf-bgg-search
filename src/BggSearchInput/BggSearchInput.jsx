@@ -32,7 +32,7 @@ const BggSearchInput = ({
     const res = items.map(({ id, name: { value: name }, yearpublished }) => {
       const year = yearpublished?.value;
       return {
-        label: `${name}${year && " (" + year + ")"}`,
+        label: `${name}${year ? " (" + year + ")" : ""}`,
         value: id,
         year: year,
       };
