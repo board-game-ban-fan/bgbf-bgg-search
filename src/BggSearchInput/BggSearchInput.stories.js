@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 import BggSearchInput from "./BggSearchInput.jsx";
 
@@ -6,18 +6,48 @@ export default {
   title: "BggSearchInput",
   component: BggSearchInput,
   argTypes: {
-    // backgroundColor: { control: "color" },
+    isGetFullGameData: { control: "boolean" },
   },
 };
 
-const Template = (args) => {
+const Template = ({ isGetFullGameData, ...args }) => {
   const [selectGame, setSelectGame] = useState();
+
+  const handleSelectChanged = useCallback(
+    async (res) => {
+      if (isGetFullGameData) {
+        // res is promise
+        setSelectGame("Loading Full Data...");
+        const data = await res;
+
+        setSelectGame(data);
+      } else {
+        // res is data object
+        setSelectGame(res);
+      }
+    },
+    [isGetFullGameData]
+  );
+
   return (
     <>
-      <BggSearchInput {...args} onChangeSelect={setSelectGame} />
+      <BggSearchInput
+        {...args}
+        isGetFullGameData={isGetFullGameData}
+        onChangeSelect={handleSelectChanged}
+      />
+
       {selectGame && (
         <>
-          <h3>onChangeSelect callback:</h3>
+          {isGetFullGameData ? (
+            <h3>
+              When isGetFullGameData equal to true, onChangeSelect callback will
+              return a Promise
+            </h3>
+          ) : (
+            <h3>onChangeSelect callback:</h3>
+          )}
+
           <code style={{ whiteSpace: "pre-wrap" }}>
             {JSON.stringify(selectGame, null, "  ")}
           </code>
@@ -28,4 +58,4 @@ const Template = (args) => {
 };
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = { isGetFullGameData: true };

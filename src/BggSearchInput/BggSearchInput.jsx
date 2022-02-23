@@ -9,6 +9,7 @@ import bggXmlApiClient from "bgg-xml-api-client";
 import sty from "./BggSearchInput.module.scss";
 
 const BggSearchInput = ({
+  isGetFullGameData = false,
   onChangeInput,
   onChangeSelect = (val) => {
     console.log(`select: ${val} (you should pass onChange prop)`);
@@ -16,55 +17,90 @@ const BggSearchInput = ({
   placeholder = "Search by BGG...",
   ...restProps
 }) => {
-  const getBggGame = useCallback(async (name) => {
-    const { data } = await bggXmlApiClient.get("search", {
-      query: name,
-      type: "boardgame",
-    });
+  const getBggList = useCallback(async (name, cb) => {
+    try {
+      const { data } = await bggXmlApiClient.get("search", {
+        query: name,
+        type: "boardgame",
+      });
 
-    // console.log(data);
-    const { item, total } = data;
+      // console.log(data);
+      const { item, total } = data;
 
-    if (total === "0") return;
+      if (total === "0") return;
 
-    const items = total === "1" ? [item] : item;
+      const items = total === "1" ? [item] : item;
 
-    const res = items.map(({ id, name: { value: name }, yearpublished }) => {
-      const year = yearpublished?.value;
-      return {
-        label: `${name}${year ? " (" + year + ")" : ""}`,
-        name,
-        id,
-        // value: id,
-        year: year,
-      };
-    });
-
-    return res;
+      const res = items.map(({ id, name: { value: name }, yearpublished }) => {
+        const year = yearpublished?.value;
+        return {
+          label: `${name}${year ? " (" + year + ")" : ""}`,
+          name,
+          id,
+          value: id,
+          year: year,
+        };
+      });
+      return res;
+    } catch (error) {
+      console.log(error);
+      return;
+    }
   }, []);
 
-  const throttleRequest = useCallback(
-    _throttle(async (val, callback) => {
-      if (val) {
-        const data = await getBggGame(val);
-        callback(data);
-      } else {
-        callback([]);
-      }
-    }, 5100),
+  const getBggGameData = useCallback(async (id) => {
+    try {
+      const { data } = await bggXmlApiClient.get("thing", {
+        id,
+        type: "boardgame",
+      });
+      return data?.item;
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+  }, []);
+
+  const throttleBggRequest = useCallback(
+    _throttle(async (type, val, cb) => {
+      const switchMap = {
+        list: getBggList,
+        game: getBggGameData,
+      };
+
+      const data = await switchMap[type](val);
+      cb && cb(data);
+    }, 5500),
     []
   );
 
-  const debounceGet = useCallback(
+  const debounceGetList = useCallback(
     _debounce((val, callback) => {
-      throttleRequest(val, callback);
-    }, 1500),
+      throttleBggRequest("list", val, callback);
+    }, 1000),
     []
   );
+
+  const getGameData = useCallback((id) => {
+    return new Promise((resolve) => {
+      throttleBggRequest("game", id, resolve);
+    });
+  }, []);
 
   const loadOptions = useCallback((val, callback) => {
-    debounceGet(val, callback);
+    debounceGetList(val, callback);
   }, []);
+
+  const handleSelectChange = useCallback(
+    async (option) => {
+      if (isGetFullGameData) {
+        onChangeSelect(getGameData(option.id));
+      } else {
+        onChangeSelect(option);
+      }
+    },
+    [isGetFullGameData]
+  );
 
   return (
     <AsyncSelect
@@ -73,7 +109,7 @@ const BggSearchInput = ({
       loadOptions={loadOptions}
       defaultOptions
       onInputChange={onChangeInput}
-      onChange={onChangeSelect}
+      onChange={handleSelectChange}
       placeholder={placeholder}
       {...restProps}
     ></AsyncSelect>
@@ -81,9 +117,10 @@ const BggSearchInput = ({
 };
 
 BggSearchInput.propTypes = {
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.string, //test
   onChangeInput: PropTypes.func,
   onChangeSelect: PropTypes.func,
+  isGetFullGameData: PropTypes.bool,
 };
 
 export default BggSearchInput;
