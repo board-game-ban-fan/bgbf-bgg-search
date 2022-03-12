@@ -42,7 +42,7 @@ const Template = ({ isGetFullGameData, ...args }) => {
           {isGetFullGameData ? (
             <h3>
               When isGetFullGameData equal to true, onChangeSelect callback will
-              return a Promise
+              get a Promise
             </h3>
           ) : (
             <h3>onChangeSelect callback:</h3>

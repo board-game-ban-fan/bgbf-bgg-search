@@ -12,7 +12,7 @@ const BggSearchInput = ({
   isGetFullGameData = false,
   onChangeInput,
   onChangeSelect = (val) => {
-    console.log(`select: ${val} (you should pass onChange prop)`);
+    console.log(`select: ${val} (you should pass onChangeSelect prop)`);
   },
   placeholder = "Search by BGG...",
   ...restProps
