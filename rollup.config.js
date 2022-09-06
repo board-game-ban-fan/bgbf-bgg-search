@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import resolve from "@rollup/plugin-node-resolve";
+// import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import postcss from "rollup-plugin-postcss";
 import image from "@rollup/plugin-image";
@@ -18,7 +18,7 @@ const defaultSettings = {
     replace({
       "process.env.NODE_ENV": JSON.stringify("production"),
     }),
-    resolve(),
+    // resolve(),
     commonjs({
       // include: /node_modules/
     }),

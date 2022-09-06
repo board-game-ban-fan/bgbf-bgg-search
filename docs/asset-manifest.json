@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/bgbf-bgg-search/static/css/main.31d6cfe0.css",
-    "main.js": "/bgbf-bgg-search/static/js/main.20c6f033.js",
+    "main.js": "/bgbf-bgg-search/static/js/main.c5178ffb.js",
     "index.html": "/bgbf-bgg-search/index.html",
-    "main.20c6f033.js.map": "/bgbf-bgg-search/static/js/main.20c6f033.js.map"
+    "main.c5178ffb.js.map": "/bgbf-bgg-search/static/js/main.c5178ffb.js.map"
   },
   "entrypoints": [
     "static/css/main.31d6cfe0.css",
-    "static/js/main.20c6f033.js"
+    "static/js/main.c5178ffb.js"
   ]
 }
