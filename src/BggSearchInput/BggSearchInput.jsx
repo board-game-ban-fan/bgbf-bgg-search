@@ -24,23 +24,25 @@ const BggSearchInput = ({
         type: "boardgame",
       });
 
-      // console.log(data);
       const { item, total } = data;
 
       if (total === "0") return;
 
       const items = total === "1" ? [item] : item;
 
-      const res = items.map(({ id, name: { value: name }, yearpublished }) => {
-        const year = yearpublished?.value;
-        return {
-          label: `${name}${year ? " (" + year + ")" : ""}`,
-          name,
-          id,
-          value: id,
-          year: year,
-        };
-      });
+      const res = items.map(
+        ({ id, name: { value: name }, yearpublished, ...rest }) => {
+          const year = yearpublished?.value;
+          return {
+            label: `${name}${year ? " (" + year + ")" : ""}`,
+            name,
+            id,
+            value: id,
+            year: year,
+            ...rest,
+          };
+        }
+      );
       return res;
     } catch (error) {
       console.log(error);
@@ -52,7 +54,7 @@ const BggSearchInput = ({
     try {
       const { data } = await bggXmlApiClient.get("thing", {
         id,
-        type: "boardgame",
+        type: "boardgame,boardgameexpansion",
       });
       return data?.item;
     } catch (error) {
@@ -82,9 +84,7 @@ const BggSearchInput = ({
   );
 
   const getGameData = useCallback((id) => {
-    return new Promise((resolve) => {
-      throttleBggRequest("game", id, resolve);
-    });
+    return getBggGameData(id);
   }, []);
 
   const loadOptions = useCallback((val, callback) => {
@@ -105,7 +105,7 @@ const BggSearchInput = ({
   return (
     <AsyncSelect
       className={sty.BggSearchInput}
-      cacheOptions
+      // cacheOptions
       loadOptions={loadOptions}
       defaultOptions
       onInputChange={onChangeInput}

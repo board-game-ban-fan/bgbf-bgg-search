@@ -30,7 +30,7 @@
   "dependencies": {
     "bgg-xml-api-client": "^0.1.10",
     "lodash": "^4.17.21",
-    "react-select": "^5.2.2"
+    "react-select": "^5.4.0"
   },
   "peerDependencies": {
     "react": ">=17.0.2",

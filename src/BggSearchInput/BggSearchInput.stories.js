@@ -15,15 +15,21 @@ const Template = ({ isGetFullGameData, ...args }) => {
 
   const handleSelectChanged = useCallback(
     async (res) => {
-      if (isGetFullGameData) {
-        // res is promise
-        setSelectGame("Loading Full Data...");
-        const data = await res;
+      console.log(res);
+      try {
+        if (isGetFullGameData) {
+          // res is promise
+          setSelectGame("Loading Full Data...");
+          const data = await res;
 
-        setSelectGame(data);
-      } else {
-        // res is data object
-        setSelectGame(res);
+          console.log(data);
+          setSelectGame(data);
+        } else {
+          // res is data object
+          setSelectGame(res);
+        }
+      } catch (error) {
+        console.log(error);
       }
     },
     [isGetFullGameData]
