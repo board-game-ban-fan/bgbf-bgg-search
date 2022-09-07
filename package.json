@@ -1,6 +1,6 @@
 {
   "name": "bgbf-bgg-search",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "homepage": "https://gorestarry.github.io/bgbf-bgg-search/",
   "author": {
     "name": "Gore Wang",
@@ -40,7 +40,6 @@
     "react-dom": ">=17.0.2"
   },
   "devDependencies": {
-    "sass": "^1.54.8",
     "@babel/cli": "^7.18.10",
     "@babel/core": "^7.19.0",
     "@babel/preset-env": "^7.19.0",
@@ -64,6 +63,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
     "babel-loader": "^8.2.5",
+    "caniuse-lite": "^1.0.30001390",
     "npm-run-all": "^4.1.5",
     "postcss-normalize": "^10.0.1",
     "react": "^18.2.0",
@@ -77,6 +77,7 @@
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-replace": "^2.2.0",
     "rollup-plugin-terser": "^7.0.2",
+    "sass": "^1.54.8",
     "web-vitals": "^3.0.1"
   },
   "eslintConfig": {
