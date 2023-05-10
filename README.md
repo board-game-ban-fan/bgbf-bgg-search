@@ -2,7 +2,7 @@
 > Now for React only
 
 
-[Demo](https://gorestarry.github.io/bgbf-bgg-search/storybook/)
+[Demo](https://board-game-ban-fan.github.io/bgbf-bgg-search/storybook/)
 
 # Install
 ```sh
