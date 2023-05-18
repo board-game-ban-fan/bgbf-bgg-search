@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import _debounce from "lodash/debounce";
 import _throttle from "lodash/throttle";
 import AsyncSelect from "react-select/async";
+import decodeHtml from "../utils/decodeHtml.js";
 
 import bggXmlApiClient from "bgg-xml-api-client";
 
@@ -35,7 +36,7 @@ const BggSearchInput = React.memo(
           ({ id, name: { value: name }, yearpublished, ...rest }) => {
             const year = yearpublished?.value;
             return {
-              label: `${name}${year ? " (" + year + ")" : ""}`,
+              label: `${decodeHtml(name)}${year ? " (" + year + ")" : ""}`,
               name,
               id,
               value: id,
@@ -85,7 +86,14 @@ const BggSearchInput = React.memo(
     );
 
     const getGameData = useCallback((id) => {
-      return getBggGameData(id);
+      return getBggGameData(id).then((data) => {
+        data.name.length
+          ? data.name.forEach(({ value }, index) => {
+              data.name[index].value = decodeHtml(value);
+            })
+          : (data.name.value = decodeHtml(data.name.value));
+        return data;
+      });
     }, []);
 
     const loadOptions = useCallback((val, callback) => {
