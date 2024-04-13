@@ -1,101 +1,92 @@
 {
-  "name": "bgbf-bgg-search",
-  "version": "1.0.1",
-  "homepage": "https://gorestarry.github.io/bgbf-bgg-search/",
-  "author": {
-    "name": "Gore Wang",
-    "email": "gore.wang.f2e@gmail.com",
-    "url": "https://gore.wang"
-  },
-  "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "source": "src/lib.js",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "rm -rf docs && npm-run-all --parallel build-lib build-app build-storybook",
-    "start": "react-scripts start",
-    "build-lib": "rollup -c",
-    "build-lib-watch": "rollup -c -w",
-    "build-app": "react-scripts build && mv -f build/* docs",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "dev": "npm-run-all --parallel build-lib-watch storybook",
-    "storybook": "start-storybook -p 6006 -s public --no-dll",
-    "build-storybook": "build-storybook -o ./docs/storybook -s public --no-dll",
-    "minor": "npm version minor --no-git-tag-version",
-    "patch": "npm version patch --no-git-tag-version"
-  },
-  "resolutions": {
-    "bgg-xml-api-client/axios": "^0.27.2"
-  },
-  "dependencies": {
-    "bgg-xml-api-client": "^0.1.10",
-    "lodash": "^4.17.21",
-    "react-select": "^5.4.0"
-  },
-  "peerDependencies": {
-    "react": ">=17.0.2",
-    "react-dom": ">=17.0.2"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.18.10",
-    "@babel/core": "^7.19.0",
-    "@babel/preset-env": "^7.19.0",
-    "@babel/preset-react": "^7.18.6",
-    "@rollup/plugin-babel": "^5.3.1",
-    "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-image": "^2.1.1",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^14.0.0",
-    "@storybook/addon-actions": "^6.5.10",
-    "@storybook/addon-essentials": "^6.5.10",
-    "@storybook/addon-knobs": "^6.4.0",
-    "@storybook/addon-links": "^6.5.10",
-    "@storybook/addon-storysource": "^6.5.10",
-    "@storybook/builder-webpack5": "^6.5.10",
-    "@storybook/manager-webpack5": "^6.5.10",
-    "@storybook/node-logger": "^6.5.10",
-    "@storybook/preset-create-react-app": "^4.1.2",
-    "@storybook/react": "^6.5.10",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^14.4.3",
-    "babel-loader": "^8.2.5",
-    "caniuse-lite": "^1.0.30001390",
-    "npm-run-all": "^4.1.5",
-    "postcss-normalize": "^10.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-is": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "rollup": "^2.79.0",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-delete": "^2.0.0",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-replace": "^2.2.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "sass": "^1.54.8",
-    "web-vitals": "^3.0.1"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "bgbf-bgg-search",
+	"version": "1.0.2",
+	"homepage": "https://gorestarry.github.io/bgbf-bgg-search/",
+	"author": {
+		"name": "Gore Wang",
+		"email": "gore.wang.f2e@gmail.com",
+		"url": "https://gore.wang"
+	},
+	"main": "dist/index.js",
+	"module": "dist/index.es.js",
+	"source": "src/lib.js",
+	"files": ["dist"],
+	"scripts": {
+		"build": "rm -rf docs && npm-run-all --parallel build-lib build-app build-storybook",
+		"start": "react-scripts start",
+		"build-lib": "rollup -c",
+		"build-lib-watch": "rollup -c -w",
+		"build-app": "react-scripts build && mv -f build/* docs",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"dev": "npm-run-all --parallel build-lib-watch storybook",
+		"storybook": "start-storybook -p 6006 -s public --no-dll",
+		"build-storybook": "build-storybook -o ./docs/storybook -s public --no-dll",
+		"minor": "npm version minor --no-git-tag-version",
+		"patch": "npm version patch --no-git-tag-version"
+	},
+	"resolutions": {
+		"bgg-xml-api-client/axios": "^0.27.2"
+	},
+	"dependencies": {
+		"bgg-xml-api-client": "^0.1.10",
+		"lodash": "^4.17.21",
+		"react-select": "^5.4.0"
+	},
+	"peerDependencies": {
+		"react": ">=17.0.2",
+		"react-dom": ">=17.0.2"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.18.10",
+		"@babel/core": "^7.19.0",
+		"@babel/preset-env": "^7.19.0",
+		"@babel/preset-react": "^7.18.6",
+		"@rollup/plugin-babel": "^5.3.1",
+		"@rollup/plugin-commonjs": "^22.0.2",
+		"@rollup/plugin-image": "^2.1.1",
+		"@rollup/plugin-json": "^4.1.0",
+		"@rollup/plugin-node-resolve": "^14.0.0",
+		"@storybook/addon-actions": "^6.5.10",
+		"@storybook/addon-essentials": "^6.5.10",
+		"@storybook/addon-knobs": "^6.4.0",
+		"@storybook/addon-links": "^6.5.10",
+		"@storybook/addon-storysource": "^6.5.10",
+		"@storybook/builder-webpack5": "^6.5.10",
+		"@storybook/manager-webpack5": "^6.5.10",
+		"@storybook/node-logger": "^6.5.10",
+		"@storybook/preset-create-react-app": "^4.1.2",
+		"@storybook/react": "^6.5.10",
+		"@testing-library/jest-dom": "^5.16.5",
+		"@testing-library/react": "^13.4.0",
+		"@testing-library/user-event": "^14.4.3",
+		"babel-loader": "^8.2.5",
+		"caniuse-lite": "^1.0.30001390",
+		"npm-run-all": "^4.1.5",
+		"postcss-normalize": "^10.0.1",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-is": "^18.2.0",
+		"react-scripts": "5.0.1",
+		"rollup": "^2.79.0",
+		"rollup-plugin-babel": "^4.4.0",
+		"rollup-plugin-delete": "^2.0.0",
+		"rollup-plugin-peer-deps-external": "^2.2.4",
+		"rollup-plugin-postcss": "^4.0.2",
+		"rollup-plugin-replace": "^2.2.0",
+		"rollup-plugin-terser": "^7.0.2",
+		"sass": "^1.54.8",
+		"web-vitals": "^3.0.1"
+	},
+	"eslintConfig": {
+		"extends": ["react-app", "react-app/jest"]
+	},
+	"browserslist": {
+		"production": [">0.2%", "not dead", "not op_mini all"],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
 }
